@@ -1,0 +1,1503 @@
+{
+  "27K Airport": null,
+  "ABY Airport": [
+    31.57851,
+    -84.15574
+  ],
+  "ACY Airport": [
+    39.36415,
+    -74.42306
+  ],
+  "ADS Airport": [
+    32.96179,
+    -96.82917
+  ],
+  "ALS Airport": [
+    37.46945,
+    -105.87002
+  ],
+  "AMA Airport": [
+    35.222,
+    -101.8313
+  ],
+  "ANH Airport": [
+    33.35,
+    119.98333
+  ],
+  "APC Airport": [
+    38.29714,
+    -122.28553
+  ],
+  "APF Airport": [
+    26.14234,
+    -81.79596
+  ],
+  "ASE": [
+    39.1911,
+    -106.81754
+  ],
+  "ASE Airport": [
+    39.1911,
+    -106.81754
+  ],
+  "ASF Airport": [
+    46.34968,
+    48.04076
+  ],
+  "ATW Airport": [
+    44.26193,
+    -88.41538
+  ],
+  "AVO Airport": [
+    27.59587,
+    -81.50619
+  ],
+  "Abuja, Nigeria": [
+    9.05785,
+    7.49508
+  ],
+  "Accra, Ghana": [
+    5.55602,
+    -0.1969
+  ],
+  "Albuquerque International Sunport": [
+    35.04199,
+    -106.60697
+  ],
+  "Albuquerque International Sunport, NM": [
+    35.04199,
+    -106.60697
+  ],
+  "Allegheny County Airport, PA": [
+    40.35479,
+    -79.92977
+  ],
+  "Aspen Pitkin County Airport": null,
+  "Aspen-Pitkin County Airport, CO": null,
+  "Aspen/Pitkin County Airport, CO": null,
+  "Atlantic City International Airport": [
+    39.45762,
+    -74.57654
+  ],
+  "Atlantic City International, NJ": [
+    39.45762,
+    -74.57654
+  ],
+  "Avon Park Executive Airport": [
+    27.59444,
+    -81.52626
+  ],
+  "Azores, Portugal": [
+    37.74058,
+    -25.67282
+  ],
+  "BAF Airport": [
+    42.12509,
+    -72.74954
+  ],
+  "BCT Airport": [
+    26.35869,
+    -80.0831
+  ],
+  "BFI Airport": [
+    47.53505,
+    -122.30624
+  ],
+  "BKL Airport": [
+    41.51727,
+    -81.68319
+  ],
+  "BMI Airport": [
+    40.4842,
+    -88.99369
+  ],
+  "BQK Airport": [
+    31.25884,
+    -81.46621
+  ],
+  "BUR Airport": [
+    34.18084,
+    -118.30897
+  ],
+  "BVY Airport": [
+    42.55843,
+    -70.88005
+  ],
+  "BZN Airport": [
+    45.67965,
+    -111.03856
+  ],
+  "Baltimore-Washington International, MD": [
+    39.17539,
+    -76.66802
+  ],
+  "Bangor International Airport": [
+    44.80892,
+    -68.82275
+  ],
+  "Bangor International Airport, ME": [
+    44.80892,
+    -68.82275
+  ],
+  "Bangor International, ME": [
+    44.80892,
+    -68.82275
+  ],
+  "Barnstable Municipal Airport, Hyannis, MA": [
+    41.66733,
+    -70.28741
+  ],
+  "Boca Raton Airport": [
+    26.37897,
+    -80.10699
+  ],
+  "Boston Logan International, MA": null,
+  "Brunswick Golden Isles Airport": [
+    31.25884,
+    -81.46621
+  ],
+  "CHO Airport": [
+    38.02931,
+    -78.47668
+  ],
+  "CMH": [
+    39.96118,
+    -82.99879
+  ],
+  "CMO Airport": [
+    5.3505,
+    48.5268
+  ],
+  "CNM Airport": [
+    32.42067,
+    -104.22884
+  ],
+  "CNO Airport": [
+    34.01223,
+    -117.68894
+  ],
+  "CNW Airport": [
+    31.63355,
+    -97.06914
+  ],
+  "CNY Airport": [
+    38.57332,
+    -109.54984
+  ],
+  "CPS Airport": [
+    38.57061,
+    -90.15622
+  ],
+  "CRG Airport": [
+    30.33635,
+    -81.51426
+  ],
+  "CRW Airport": [
+    38.34982,
+    -81.63262
+  ],
+  "CYJT Airport": [
+    48.54417,
+    -58.55
+  ],
+  "CYMX Airport": [
+    45.68194,
+    -74.00528
+  ],
+  "CYQX Airport": [
+    48.94483,
+    -54.56081
+  ],
+  "CYVR Airport": [
+    49.19489,
+    -123.17923
+  ],
+  "CYXQ Airport": [
+    62.41089,
+    -140.8691
+  ],
+  "CYXU Airport": [
+    43.02987,
+    -81.14892
+  ],
+  "CYYR Airport": [
+    53.31601,
+    -60.4188
+  ],
+  "Cape Town, South Africa": [
+    -33.92584,
+    18.42322
+  ],
+  "Cavern City Air Terminal": [
+    32.33734,
+    -104.263
+  ],
+  "Cecil Airport": [
+    30.21861,
+    -81.87667
+  ],
+  "Charleston Executive Airport": [
+    32.69824,
+    -80.00753
+  ],
+  "Chicago Midway International Airport": [
+    41.7868,
+    -87.74555
+  ],
+  "Chino Airport": [
+    33.97501,
+    -117.63755
+  ],
+  "Ciampino Airport, Rome, Italy": [
+    41.80064,
+    12.60158
+  ],
+  "Cobb County International Airport McCollum Field": null,
+  "Columbus Airport, OH": [
+    39.96118,
+    -82.99879
+  ],
+  "Cyril E King Airport": null,
+  "Cyril E. King Airport": [
+    18.33523,
+    -64.97292
+  ],
+  "Cyril E. King Airport, USVI": [
+    18.33523,
+    -64.97292
+  ],
+  "DAL Airport": [
+    25.58474,
+    100.21229
+  ],
+  "DAY Airport": [
+    39.75895,
+    -84.19161
+  ],
+  "DCA": [
+    38.85233,
+    -77.0372
+  ],
+  "DEN": [
+    39.73915,
+    -104.9847
+  ],
+  "DGAA Airport": [
+    5.60519,
+    -0.16679
+  ],
+  "DIAP Airport": [
+    5.26139,
+    -3.92629
+  ],
+  "DNAA Airport": [
+    9.00657,
+    7.26419
+  ],
+  "DNN Airport": [
+    34.7698,
+    -84.97022
+  ],
+  "Dallas Fort Worth International Airport": null,
+  "Dallas Love Field": [
+    32.84707,
+    -96.85195
+  ],
+  "Dallas/Fort Worth International, TX": [
+    32.89595,
+    -97.0372
+  ],
+  "Dalton Municipal Airport": [
+    34.72175,
+    -84.86911
+  ],
+  "Dayton International Airport, OH": null,
+  "Daytona Beach International Airport": [
+    29.18464,
+    -81.06052
+  ],
+  "Daytona Beach International, FL": [
+    29.18464,
+    -81.06052
+  ],
+  "DeKalb Peachtree Airport": null,
+  "DeKalb-Peachtree Airport": [
+    33.87737,
+    -84.30456
+  ],
+  "Denver International": [
+    39.85891,
+    -104.67326
+  ],
+  "Denver International, CO": [
+    39.85891,
+    -104.67326
+  ],
+  "EBBR Airport": [
+    50.90139,
+    4.48444
+  ],
+  "EDDM Airport": [
+    48.35378,
+    11.78609
+  ],
+  "EGAA Airport": [
+    54.6575,
+    -6.21583
+  ],
+  "EGBB Airport": [
+    52.45386,
+    -1.74803
+  ],
+  "EGE Airport": [
+    39.65526,
+    -106.82865
+  ],
+  "EGGP Airport": [
+    53.33333,
+    -2.85
+  ],
+  "EGHL Airport": [
+    51.1872,
+    -1.0335
+  ],
+  "EGPH Airport": [
+    55.95,
+    -3.3725
+  ],
+  "EGSH Airport": [
+    52.67583,
+    1.28278
+  ],
+  "EGYM Airport": [
+    52.64835,
+    0.55069
+  ],
+  "EIDW Airport": [
+    53.42133,
+    -6.27008
+  ],
+  "EINN Airport": [
+    52.70198,
+    -8.92482
+  ],
+  "EIWF Airport": [
+    52.1872,
+    -7.08696
+  ],
+  "EKCH Airport": [
+    55.61792,
+    12.65597
+  ],
+  "ELP Airport": [
+    31.75872,
+    -106.48693
+  ],
+  "ENGM Airport": [
+    60.19392,
+    11.10036
+  ],
+  "ESN Airport": [
+    38.77428,
+    -76.07633
+  ],
+  "ESSA Airport": [
+    -1.60028,
+    14.84861
+  ],
+  "EWR Airport": [
+    40.73566,
+    -74.17237
+  ],
+  "EYW Airport": [
+    24.55524,
+    -81.78163
+  ],
+  "Exuma International Airport": [
+    23.56123,
+    -75.87484
+  ],
+  "FACT Airport": [
+    -33.96481,
+    18.60167
+  ],
+  "FAJS Airport": [
+    46.41695,
+    18.91943
+  ],
+  "FDK Airport": [
+    39.41427,
+    -77.41054
+  ],
+  "FOK Airport": [
+    40.80316,
+    -72.61454
+  ],
+  "FQMA Airport": [
+    -25.91973,
+    32.57351
+  ],
+  "FRG Airport": [
+    40.7326,
+    -73.4454
+  ],
+  "FRH Airport": [
+    38.54894,
+    -86.61999
+  ],
+  "FTK Airport": [
+    37.89113,
+    -85.96363
+  ],
+  "FTY Airport": [
+    33.779,
+    -84.52132
+  ],
+  "Fort Lauderdale Hollywood International Airport": null,
+  "Fort Lauderdale-Hollywood International, FL": [
+    26.07147,
+    -80.144
+  ],
+  "Fulton County Airport Brown Field": null,
+  "GAI Airport": [
+    39.14344,
+    -77.20137
+  ],
+  "GEG Airport": [
+    47.65966,
+    -117.42908
+  ],
+  "GMFF Airport": [
+    33.92726,
+    -4.97796
+  ],
+  "GMME Airport": [
+    34.05147,
+    -6.75152
+  ],
+  "GMMX Airport": [
+    31.60689,
+    -8.0363
+  ],
+  "GMTT Airport": [
+    35.72692,
+    -5.91689
+  ],
+  "GNV Airport": [
+    29.65163,
+    -82.32483
+  ],
+  "GOOY Airport": [
+    14.73971,
+    -17.49022
+  ],
+  "GRI Airport": [
+    40.92501,
+    -98.34201
+  ],
+  "GRT Airport": [
+    32.5742,
+    74.07542
+  ],
+  "GUC Airport": [
+    38.54582,
+    -106.92532
+  ],
+  "GVAC Airport": [
+    16.74139,
+    -22.94944
+  ],
+  "GVAL Airport": [
+    55.5637,
+    21.88616
+  ],
+  "GYH Airport": [
+    53.21667,
+    9.31667
+  ],
+  "Gainesville Regional Airport": [
+    29.69025,
+    -82.27149
+  ],
+  "Gander International Airport": [
+    48.94483,
+    -54.56081
+  ],
+  "Governors Harbour Airport": null,
+  "Grand Bahama International Airport": [
+    26.55869,
+    -78.69555
+  ],
+  "Gregorio Luper\u00f3n International Airport": null,
+  "Gwinnett County Airport Briscoe Field": null,
+  "HJO Airport": [
+    58.30133,
+    14.28784
+  ],
+  "HNL Airport": [
+    21.30694,
+    -157.85834
+  ],
+  "HRYR Airport": [
+    -1.9631,
+    30.1346
+  ],
+  "HTO Airport": [
+    40.96343,
+    -72.1848
+  ],
+  "Hancock County-Bar Harbor Airport, ME": [
+    44.44924,
+    -68.36196
+  ],
+  "Hartsfield-Jackson Atlanta International, GA": [
+    33.64099,
+    -84.42265
+  ],
+  "Hewanorra International Airport": [
+    13.73319,
+    -60.9526
+  ],
+  "IAD": [
+    38.94877,
+    -77.4491
+  ],
+  "ICT Airport": [
+    37.69224,
+    -97.33754
+  ],
+  "ILG Airport": [
+    39.74595,
+    -75.54659
+  ],
+  "IMS Airport": [
+    58.90378,
+    5.96349
+  ],
+  "IND Airport": [
+    39.76838,
+    -86.15804
+  ],
+  "ISM Airport": [
+    13.88225,
+    44.04796
+  ],
+  "ISP Airport": [
+    40.72982,
+    -73.21039
+  ],
+  "Ixtapa Zihuatanejo International Airport": null,
+  "JAC Airport": [
+    43.47993,
+    -110.76243
+  ],
+  "JAGS McCartney International Airport": [
+    29.25138,
+    76.66098
+  ],
+  "JAN Airport": [
+    32.29876,
+    -90.18481
+  ],
+  "JAX Airport": [
+    30.33218,
+    -81.65565
+  ],
+  "JFK International, NY": [
+    40.63983,
+    -73.77874
+  ],
+  "JVY Airport": null,
+  "JZI Airport": null,
+  "Jacksonville International Airport": [
+    30.49187,
+    -81.68569
+  ],
+  "Johannesburg, South Africa": [
+    -26.20227,
+    28.04363
+  ],
+  "John F Kennedy International Airport": null,
+  "John F. Kennedy International Airport": [
+    40.63983,
+    -73.77874
+  ],
+  "John F. Kennedy International, NY": [
+    40.63983,
+    -73.77874
+  ],
+  "John Glenn Columbus International Airport": [
+    39.99795,
+    -82.88352
+  ],
+  "John Glenn Columbus International, OH": [
+    39.99795,
+    -82.88352
+  ],
+  "Key West International Airport": [
+    24.55654,
+    -81.75926
+  ],
+  "Kigali, Rwanda": [
+    -1.94995,
+    30.05885
+  ],
+  "Kissimmee Gateway Airport": [
+    28.28972,
+    -81.43722
+  ],
+  "LAL Airport": [
+    28.03947,
+    -81.9498
+  ],
+  "LAS Airport": [
+    36.17497,
+    -115.13722
+  ],
+  "LAX International, CA": [
+    34.05223,
+    -118.24368
+  ],
+  "LCQ Airport": [
+    30.18968,
+    -82.63929
+  ],
+  "LEBB Airport": [
+    43.3011,
+    -2.91061
+  ],
+  "LEE Airport": [
+    28.81082,
+    -81.87786
+  ],
+  "LEGR Airport": [
+    37.18873,
+    -3.77736
+  ],
+  "LEIB Airport": [
+    38.87286,
+    1.37312
+  ],
+  "LEPA Airport": [
+    15.88438,
+    120.45089
+  ],
+  "LETL Airport": [
+    40.4135,
+    -1.21794
+  ],
+  "LEX Airport": [
+    37.98869,
+    -84.47772
+  ],
+  "LFBE Airport": [
+    44.82528,
+    0.51861
+  ],
+  "LFBG Airport": [
+    45.65833,
+    -0.3175
+  ],
+  "LFML Airport": [
+    43.43556,
+    5.21361
+  ],
+  "LFMN Airport": [
+    43.66272,
+    7.20787
+  ],
+  "LFPG Airport": [
+    49.01278,
+    2.55
+  ],
+  "LFPO Airport": [
+    48.72528,
+    2.35944
+  ],
+  "LFTH Airport": [
+    43.09734,
+    6.14603
+  ],
+  "LGB Airport": [
+    33.76696,
+    -118.18923
+  ],
+  "LGIR Airport": [
+    35.33907,
+    25.17513
+  ],
+  "LIEO Airport": [
+    40.89866,
+    9.51763
+  ],
+  "LIML Airport": [
+    45.46081,
+    9.27952
+  ],
+  "LIPR Airport": [
+    44.02029,
+    12.61175
+  ],
+  "LIT Airport": [
+    34.74648,
+    -92.28959
+  ],
+  "LKPR Airport": [
+    50.10083,
+    14.26
+  ],
+  "LLBG Airport": [
+    32.01361,
+    34.88657
+  ],
+  "LOWW Airport": [
+    48.1221,
+    16.55751
+  ],
+  "LPAZ Airport": [
+    36.97139,
+    -25.17064
+  ],
+  "LSGG Airport": [
+    46.23756,
+    6.10921
+  ],
+  "LSJ Airport": [
+    -5.367,
+    147.0
+  ],
+  "LSZH Airport": [
+    47.45264,
+    8.5605
+  ],
+  "LUK Airport": [
+    -8.2889,
+    116.2212
+  ],
+  "LZIB Airport": [
+    48.17017,
+    17.21267
+  ],
+  "LZTT Airport": [
+    49.07359,
+    20.24114
+  ],
+  "LZU Airport": [
+    33.95621,
+    -83.98796
+  ],
+  "LaGuardia Airport": [
+    40.77607,
+    -73.87269
+  ],
+  "LaGuardia Airport, NY": [
+    42.55461,
+    -2.58528
+  ],
+  "Lake City Gateway Airport": [
+    30.17892,
+    -82.57418
+  ],
+  "Lakefront Airport": [
+    30.03593,
+    -90.02561
+  ],
+  "Lakeland Linder International Airport": null,
+  "Laurence G Hanscom Field": null,
+  "Laurence G. Hanscom Field, Bedford, MA": null,
+  "Le Bourget, Paris, France": [
+    48.93405,
+    2.43584
+  ],
+  "Leesburg International Airport": [
+    28.82542,
+    -81.80758
+  ],
+  "Leeward Air Ranch": [
+    29.09057,
+    -82.0322
+  ],
+  "Little Saint James": [
+    18.29995,
+    -64.82514
+  ],
+  "Little St. James Island, USVI": null,
+  "Logan International Airport": [
+    42.36514,
+    -71.01777
+  ],
+  "London Luton Airport, UK": null,
+  "London Luton, UK": null,
+  "London Stansted Airport, UK": [
+    51.885,
+    0.235
+  ],
+  "London Stansted, UK": [
+    51.885,
+    0.235
+  ],
+  "Long Beach Airport": [
+    33.81752,
+    -118.15229
+  ],
+  "Long Island MacArthur Airport": [
+    40.78992,
+    -73.09764
+  ],
+  "Long Island MacArthur, NY": [
+    40.78992,
+    -73.09764
+  ],
+  "Los Alamos": [
+    35.88808,
+    -106.30697
+  ],
+  "Los Angeles International, CA": [
+    33.94251,
+    -118.40897
+  ],
+  "Luis Mu\u00f1oz Mar\u00edn International Airport": [
+    18.43851,
+    -66.00297
+  ],
+  "Luton": [
+    51.87967,
+    -0.41748
+  ],
+  "Lynden Pindling International Airport": [
+    25.04571,
+    -77.46621
+  ],
+  "MBGT Airport": [
+    21.4445,
+    -71.1423
+  ],
+  "MBPV Airport": [
+    21.77361,
+    -72.26583
+  ],
+  "MCN Airport": [
+    32.84069,
+    -83.6324
+  ],
+  "MDLR Airport": [
+    18.45071,
+    -68.91183
+  ],
+  "MDPC Airport": [
+    18.56737,
+    -68.36343
+  ],
+  "MDPP Airport": [
+    19.7579,
+    -70.57003
+  ],
+  "MDW": [
+    41.7868,
+    -87.74555
+  ],
+  "MDW Airport": [
+    41.7868,
+    -87.74555
+  ],
+  "MHT Airport": [
+    42.99564,
+    -71.45479
+  ],
+  "MIV Airport": [
+    39.40206,
+    -75.03934
+  ],
+  "MMQT Airport": [
+    20.61729,
+    -100.18566
+  ],
+  "MMSD Airport": [
+    23.15185,
+    -109.72104
+  ],
+  "MMZH Airport": [
+    17.60157,
+    -101.46054
+  ],
+  "MPPV Airport": null,
+  "MQS Airport": [
+    12.87716,
+    -61.18308
+  ],
+  "MRY Airport": [
+    36.60024,
+    -121.89468
+  ],
+  "MTJ Airport": [
+    38.47832,
+    -107.87617
+  ],
+  "MTPP Airport": [
+    18.58005,
+    -72.29254
+  ],
+  "MYEF Airport": [
+    23.56123,
+    -75.87484
+  ],
+  "MYEM Airport": [
+    7.62789,
+    8.27502
+  ],
+  "MYEY Airport": [
+    23.39764,
+    -75.49893
+  ],
+  "MYGF Airport": [
+    26.55869,
+    -78.69555
+  ],
+  "MYGM Airport": null,
+  "MYNN Airport": [
+    25.04571,
+    -77.46621
+  ],
+  "Madrid-Barajas, Spain": null,
+  "Maputo, Mozambique": [
+    -25.96553,
+    32.58322
+  ],
+  "Martha's Vineyard Airport, MA": [
+    41.41678,
+    -70.61614
+  ],
+  "Marthas Vineyard Airport": null,
+  "Miami International Airport": [
+    25.79343,
+    -80.29005
+  ],
+  "Miami International, FL": [
+    25.79343,
+    -80.29005
+  ],
+  "Miami-Opa Locka Executive, FL": [
+    25.90732,
+    -80.27894
+  ],
+  "Middle Georgia Regional Airport": [
+    32.69625,
+    -83.64199
+  ],
+  "Moffett Federal Airfield": [
+    37.41352,
+    -122.05404
+  ],
+  "Montreal-Trudeau International, Canada": null,
+  "Montr\u00e9al Pierre Elliott Trudeau International Airport": null,
+  "NEW": [
+    6.01962,
+    6.91729
+  ],
+  "NEW Airport": [
+    6.01962,
+    6.91729
+  ],
+  "NUQ Airport": [
+    37.38605,
+    -122.08385
+  ],
+  "Nantucket Memorial Airport, MA": [
+    41.25693,
+    -70.05934
+  ],
+  "Naples Municipal Airport": [
+    26.15259,
+    -81.77509
+  ],
+  "Newark Liberty International Airport": [
+    40.69709,
+    -74.17557
+  ],
+  "Newark Liberty International, NJ": [
+    40.69709,
+    -74.17557
+  ],
+  "Nice Cote d'Azur, France": [
+    43.66272,
+    7.20787
+  ],
+  "OAK Airport": [
+    37.80437,
+    -122.2708
+  ],
+  "OEO Airport": [
+    45.32052,
+    -92.70493
+  ],
+  "OMDB Airport": [
+    25.25278,
+    55.36444
+  ],
+  "ONT Airport": [
+    34.06334,
+    -117.65089
+  ],
+  "OQU Airport": [
+    40.93198,
+    -90.94709
+  ],
+  "ORL Airport": [
+    28.53834,
+    -81.37924
+  ],
+  "OSU Airport": [
+    33.5,
+    132.55
+  ],
+  "OXC Airport": [
+    41.43399,
+    -73.11678
+  ],
+  "PANC Airport": [
+    45.85626,
+    22.52409
+  ],
+  "PBD Airport": [
+    21.64219,
+    69.60929
+  ],
+  "PBI": [
+    26.71534,
+    -80.05337
+  ],
+  "PBI - OGA Airport": [
+    26.71534,
+    -80.05337
+  ],
+  "PBI-OFF Airport": [
+    26.71534,
+    -80.05337
+  ],
+  "PDK Airport": [
+    33.87737,
+    -84.30456
+  ],
+  "PHL Airport": [
+    39.95238,
+    -75.16362
+  ],
+  "POU Airport": [
+    41.70037,
+    -73.92097
+  ],
+  "PTK Airport": [
+    42.63892,
+    -83.29105
+  ],
+  "PUB Airport": [
+    38.25445,
+    -104.60914
+  ],
+  "PWM Airport": [
+    43.65737,
+    -70.2589
+  ],
+  "Palm Beach International Airport": [
+    26.68316,
+    -80.09559
+  ],
+  "Palm Beach International, FL": [
+    26.68316,
+    -80.09559
+  ],
+  "Palm Springs International, CA": [
+    33.82807,
+    -116.50696
+  ],
+  "Paris Le Bourget, France": null,
+  "Philadelphia International, PA": [
+    39.87835,
+    -75.24018
+  ],
+  "Phoenix Sky Harbor International Airport": [
+    33.43551,
+    -111.99807
+  ],
+  "Phoenix Sky Harbor International, AZ": [
+    33.43551,
+    -111.99807
+  ],
+  "Princess Juliana International Airport": [
+    18.04095,
+    -63.1089
+  ],
+  "Princess Juliana International, St. Maarten": [
+    18.04095,
+    -63.1089
+  ],
+  "RIC Airport": [
+    37.55376,
+    -77.46026
+  ],
+  "RIL Airport": [
+    39.5347,
+    -107.78312
+  ],
+  "RJTA Airport": [
+    35.45461,
+    139.45016
+  ],
+  "RSW Airport": [
+    26.53731,
+    -81.75997
+  ],
+  "RUH Airport": [
+    24.68773,
+    46.72185
+  ],
+  "RWI Airport": [
+    35.93821,
+    -77.79053
+  ],
+  "RYY Airport": [
+    61.28333,
+    22.38333
+  ],
+  "Rabat-Sal\u00e9 Airport, Morocco": [
+    34.05147,
+    -6.75152
+  ],
+  "Richmond International, VA": [
+    37.50517,
+    -77.31967
+  ],
+  "Rochester International, NY": null,
+  "Ronald Reagan Washington National Airport": [
+    38.85233,
+    -77.0372
+  ],
+  "Ronald Reagan Washington National Airport, DC": [
+    38.85233,
+    -77.0372
+  ],
+  "Ronald Reagan Washington National, DC": [
+    38.85233,
+    -77.0372
+  ],
+  "SAF": [
+    35.68698,
+    -105.9378
+  ],
+  "SAF Airport": [
+    35.68698,
+    -105.9378
+  ],
+  "SAN Airport": [
+    32.71571,
+    -117.16472
+  ],
+  "SAV": [
+    32.08354,
+    -81.09983
+  ],
+  "SBA Airport": [
+    34.42083,
+    -119.69819
+  ],
+  "SBEG": [
+    -3.03861,
+    -60.04972
+  ],
+  "SBGK Airport": null,
+  "SBGL": [
+    -22.79865,
+    -43.23077
+  ],
+  "SBGR Airport": [
+    -23.43057,
+    -46.48101
+  ],
+  "SDL Airport": [
+    62.63228,
+    17.93794
+  ],
+  "SEF Airport": [
+    27.49559,
+    -81.44091
+  ],
+  "SEGU Airport": [
+    31.162,
+    87.7688
+  ],
+  "SFO Airport": [
+    37.77493,
+    -122.41942
+  ],
+  "SIMULATOR": null,
+  "SJC Airport": [
+    37.33939,
+    -121.89496
+  ],
+  "SKBO Airport": [
+    4.70159,
+    -74.14695
+  ],
+  "SLC Airport": [
+    40.76078,
+    -111.89105
+  ],
+  "SLN Airport": [
+    38.84028,
+    -97.61142
+  ],
+  "SPI Airport": [
+    39.80172,
+    -89.64371
+  ],
+  "SSI Airport": [
+    31.15013,
+    -81.49147
+  ],
+  "STL Airport": [
+    38.62727,
+    -90.19789
+  ],
+  "SUS Airport": [
+    43.30637,
+    -0.76673
+  ],
+  "SWF Airport": [
+    41.50343,
+    -74.01042
+  ],
+  "San Antonio International, TX": [
+    29.53384,
+    -98.47002
+  ],
+  "San Diego International Airport": [
+    32.73235,
+    -117.19744
+  ],
+  "San Diego International, CA": [
+    32.73235,
+    -117.19744
+  ],
+  "San Francisco International, CA": [
+    37.61882,
+    -122.3758
+  ],
+  "Santa Fe Municipal Airport, NM": [
+    35.61698,
+    -106.08919
+  ],
+  "Santa Fe Regional Airport": null,
+  "Santa Monica Airport, CA": [
+    34.01949,
+    -118.49138
+  ],
+  "Savannah Hilton Head International Airport": null,
+  "Savannah/Hilton Head International, GA": null,
+  "Sebring Regional Airport": [
+    27.45759,
+    -81.34519
+  ],
+  "Southwest Florida International Airport": [
+    26.53731,
+    -81.75997
+  ],
+  "Southwest Georgia Regional Airport": [
+    31.53545,
+    -84.19435
+  ],
+  "Space Coast Regional Airport": [
+    28.51101,
+    -80.80058
+  ],
+  "St Louis Lambert International Airport": null,
+  "Stephenville International Airport": [
+    48.54417,
+    -58.55
+  ],
+  "T.F. Green International, Providence, RI": null,
+  "TAPA Airport": [
+    59.26056,
+    25.95861
+  ],
+  "TEB": [
+    40.85982,
+    -74.05931
+  ],
+  "TEB, AHN": [
+    40.85982,
+    -74.05931
+  ],
+  "TGB Airport": [
+    8.71463,
+    117.35154
+  ],
+  "TIST Airport": [
+    18.33523,
+    -64.97292
+  ],
+  "TIST-LSJ Airport": [
+    18.33523,
+    -64.97292
+  ],
+  "TIX Airport": [
+    28.61222,
+    -80.80755
+  ],
+  "TJSJ Airport": [
+    18.43851,
+    -66.00297
+  ],
+  "TLG Airport": [
+    -9.10306,
+    160.15056
+  ],
+  "TLPC Airport": [
+    14.02023,
+    -60.99294
+  ],
+  "TLPL Airport": [
+    13.73319,
+    -60.9526
+  ],
+  "TPA Airport": [
+    27.94752,
+    -82.45843
+  ],
+  "TPQF Airport": null,
+  "TUL Airport": [
+    36.15398,
+    -95.99277
+  ],
+  "TUS Airport": [
+    32.22174,
+    -110.92648
+  ],
+  "TVC": [
+    44.76306,
+    -85.62063
+  ],
+  "TVC Airport": [
+    44.76306,
+    -85.62063
+  ],
+  "TXKF Airport": [
+    32.36404,
+    -64.6787
+  ],
+  "Teterboro Airport": [
+    40.8501,
+    -74.06042
+  ],
+  "Teterboro Airport, NJ": [
+    40.85982,
+    -74.05931
+  ],
+  "Toussaint Louverture International Airport": null,
+  "Tucson International Airport": [
+    32.11619,
+    -110.94176
+  ],
+  "Tucson International, AZ": [
+    32.11619,
+    -110.94176
+  ],
+  "ULLI Airport": [
+    58.19417,
+    24.73389
+  ],
+  "UNNT Airport": [
+    55.0126,
+    82.6507
+  ],
+  "UUWW Airport": [
+    55.59153,
+    37.26149
+  ],
+  "VCBI Airport": [
+    7.18076,
+    79.88412
+  ],
+  "VHHH Airport": [
+    22.31546,
+    113.93372
+  ],
+  "VNC Airport": [
+    27.09978,
+    -82.45426
+  ],
+  "VNY Airport": [
+    34.20973,
+    -118.49064
+  ],
+  "VQQ Airport": [
+    30.21861,
+    -81.87667
+  ],
+  "Van Nuys Airport": [
+    34.20973,
+    -118.49064
+  ],
+  "Van Nuys Airport, CA": [
+    34.18667,
+    -118.44897
+  ],
+  "Venice Municipal Airport": [
+    27.07439,
+    -82.44112
+  ],
+  "W47 Airport": [
+    24.43017,
+    54.40704
+  ],
+  "WBSB Airport": [
+    4.9442,
+    114.92835
+  ],
+  "WRRR Airport": null,
+  "WSSS Airport": [
+    1.35514,
+    103.99006
+  ],
+  "Washington Dulles International Airport": [
+    38.94877,
+    -77.4491
+  ],
+  "Washington Dulles International, VA": [
+    38.94877,
+    -77.4491
+  ],
+  "Westchester County Airport": [
+    41.06704,
+    -73.70707
+  ],
+  "Westchester County Airport, NY": [
+    41.06704,
+    -73.70707
+  ],
+  "X21 Airport": null,
+  "X31 Airport": null,
+  "YIP Airport": [
+    42.23782,
+    -83.53021
+  ],
+  "ZBAA Airport": [
+    40.08011,
+    116.58456
+  ],
+  "ZGSZ Airport": [
+    22.63926,
+    113.81066
+  ],
+  "ZLDL Airport": [
+    37.12501,
+    97.26849
+  ],
+  "ZORRO Airport": [
+    9.57863,
+    -0.93766
+  ],
+  "ZUUU Airport": [
+    30.57853,
+    103.94709
+  ]
+}
