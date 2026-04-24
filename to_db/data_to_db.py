@@ -26,6 +26,7 @@ import requests
 SQLITE_BUSY_TIMEOUT_SEC = 30.0
 EXPORT_URL = "https://epsteinexposed.com/api/v2/export/flights?format=json"
 LOCAL_JSON = "flights.json"
+INSERT_BATCH_SIZE = 25
 
 _SCRIPT_DIR = Path(__file__).resolve().parent
 _REPO_ROOT = _SCRIPT_DIR.parent
@@ -63,21 +64,59 @@ CREATE_FLIGHTS_SQL = """
 CREATE TABLE IF NOT EXISTS flights (
     id TEXT PRIMARY KEY,
     flight_date TEXT,
-    origin TEXT,
-    destination TEXT,
-    aircraft TEXT,
+    origin_airport_id INTEGER,
+    destination_airport_id INTEGER,
+    aircraft_id INTEGER,
     pilot TEXT,
     passenger_count INTEGER,
     passenger_names_json TEXT,
-    departure_weather TEXT
+    departure_weather_id INTEGER,
+    arrival_weather_id INTEGER,
+    FOREIGN KEY (origin_airport_id) REFERENCES airports(id),
+    FOREIGN KEY (destination_airport_id) REFERENCES airports(id),
+    FOREIGN KEY (aircraft_id) REFERENCES aircraft(id),
+    FOREIGN KEY (departure_weather_id) REFERENCES weather_conditions(id),
+    FOREIGN KEY (arrival_weather_id) REFERENCES weather_conditions(id)
 );
 """
 
+CREATE_AIRPORTS_SQL = """
+CREATE TABLE IF NOT EXISTS airports (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE
+);
+"""
+
+CREATE_AIRCRAFT_SQL = """
+CREATE TABLE IF NOT EXISTS aircraft (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE
+);
+"""
+
+CREATE_WEATHER_CONDITIONS_SQL = """
+CREATE TABLE IF NOT EXISTS weather_conditions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    code TEXT NOT NULL UNIQUE
+);
+"""
+
+FLIGHT_INDEX_SQL = (
+    "CREATE INDEX IF NOT EXISTS idx_flights_flight_date ON flights(flight_date)",
+    "CREATE INDEX IF NOT EXISTS idx_flights_origin_airport_id ON flights(origin_airport_id)",
+    "CREATE INDEX IF NOT EXISTS idx_flights_destination_airport_id ON flights(destination_airport_id)",
+    "CREATE INDEX IF NOT EXISTS idx_flights_aircraft_id ON flights(aircraft_id)",
+    "CREATE INDEX IF NOT EXISTS idx_flights_departure_weather_id ON flights(departure_weather_id)",
+    "CREATE INDEX IF NOT EXISTS idx_flights_arrival_weather_id ON flights(arrival_weather_id)",
+)
+
 INSERT_SQL = """
 INSERT OR REPLACE INTO flights (
-    id, flight_date, origin, destination, aircraft, pilot,
-    passenger_count, passenger_names_json, departure_weather
-) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+    id, flight_date,
+    origin_airport_id, destination_airport_id, aircraft_id,
+    pilot, passenger_count, passenger_names_json,
+    departure_weather_id, arrival_weather_id
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 """
 
 
@@ -139,22 +178,58 @@ def parse_flights_payload(payload):
     raise ValueError("Expected JSON as a list or an object with a 'data' key.")
 
 
+def _clean_text(value):
+    if not isinstance(value, str):
+        return None
+    cleaned = value.strip()
+    return cleaned or None
+
+
+def _to_int(value, default=0):
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return default
+
+
 def row_from_record(rec):
     names = rec.get("passenger_names")
     passenger_json = (
         json.dumps(names, ensure_ascii=False) if names is not None else None
     )
-    return (
-        rec["id"],
-        rec.get("date"),
-        rec.get("origin"),
-        rec.get("destination"),
-        rec.get("aircraft"),
-        rec.get("pilot") or "",
-        int(rec.get("passenger_count") or 0),
-        passenger_json,
-        None,
-    )
+    return {
+        "id": rec["id"],
+        "flight_date": rec.get("date"),
+        "origin": _clean_text(rec.get("origin")),
+        "destination": _clean_text(rec.get("destination")),
+        "aircraft": _clean_text(rec.get("aircraft")),
+        "pilot": rec.get("pilot") or "",
+        "passenger_count": _to_int(rec.get("passenger_count"), default=0),
+        "passenger_names_json": passenger_json,
+        "departure_weather_id": None,
+        "arrival_weather_id": None,
+    }
+
+
+def _get_or_create_lookup_id(conn, table_name, value, cache):
+    if not value:
+        return None
+    if value in cache:
+        return cache[value]
+
+    row = conn.execute(
+        f"SELECT id FROM {table_name} WHERE name = ?", (value,)
+    ).fetchone()
+    if row:
+        cache[value] = row[0]
+        return row[0]
+
+    conn.execute(f"INSERT INTO {table_name} (name) VALUES (?)", (value,))
+    row = conn.execute(
+        f"SELECT id FROM {table_name} WHERE name = ?", (value,)
+    ).fetchone()
+    cache[value] = row[0]
+    return row[0]
 
 
 def write_flights_to_db(flights, db_path=DB_PATH):
@@ -162,11 +237,60 @@ def write_flights_to_db(flights, db_path=DB_PATH):
     for attempt in range(1, max_attempts + 1):
         conn = sqlite3.connect(db_path, timeout=SQLITE_BUSY_TIMEOUT_SEC)
         try:
+            conn.execute("PRAGMA foreign_keys = ON")
             conn.execute(f"PRAGMA busy_timeout = {int(SQLITE_BUSY_TIMEOUT_SEC * 1000)}")
             conn.execute("BEGIN IMMEDIATE")
             conn.execute("DROP TABLE IF EXISTS flights")
+            conn.execute("DROP TABLE IF EXISTS airports")
+            conn.execute("DROP TABLE IF EXISTS aircraft")
+            conn.execute("DROP TABLE IF EXISTS weather_conditions")
+            conn.execute(CREATE_AIRPORTS_SQL)
+            conn.execute(CREATE_AIRCRAFT_SQL)
+            conn.execute(CREATE_WEATHER_CONDITIONS_SQL)
+            conn.executemany(
+                "INSERT OR IGNORE INTO weather_conditions (code) VALUES (?)",
+                [("sunny",), ("rainy",), ("unknown_day",)],
+            )
             conn.execute(CREATE_FLIGHTS_SQL)
-            conn.executemany(INSERT_SQL, (row_from_record(f) for f in flights))
+            for sql in FLIGHT_INDEX_SQL:
+                conn.execute(sql)
+            airport_cache = {}
+            aircraft_cache = {}
+            batch = []
+
+            for flight in flights:
+                row = row_from_record(flight)
+                origin_airport_id = _get_or_create_lookup_id(
+                    conn, "airports", row["origin"], airport_cache
+                )
+                destination_airport_id = _get_or_create_lookup_id(
+                    conn, "airports", row["destination"], airport_cache
+                )
+                aircraft_id = _get_or_create_lookup_id(
+                    conn, "aircraft", row["aircraft"], aircraft_cache
+                )
+
+                batch.append(
+                    (
+                        row["id"],
+                        row["flight_date"],
+                        origin_airport_id,
+                        destination_airport_id,
+                        aircraft_id,
+                        row["pilot"],
+                        row["passenger_count"],
+                        row["passenger_names_json"],
+                        row["departure_weather_id"],
+                        row["arrival_weather_id"],
+                    )
+                )
+
+                if len(batch) >= INSERT_BATCH_SIZE:
+                    conn.executemany(INSERT_SQL, batch)
+                    batch.clear()
+
+            if batch:
+                conn.executemany(INSERT_SQL, batch)
             conn.commit()
             return
         except sqlite3.OperationalError as e:

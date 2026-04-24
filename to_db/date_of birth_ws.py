@@ -3,9 +3,37 @@ import json
 import requests
 from bs4 import BeautifulSoup
 import re
+from pathlib import Path
 
-conn = sqlite3.connect('to_db/epstein.db')
+_SCRIPT_DIR = Path(__file__).resolve().parent
+_REPO_ROOT = _SCRIPT_DIR.parent
+
+
+def _default_db_path() -> Path:
+    """Prefer an existing epstein.db in repo root, then to_db/, then cwd."""
+    for candidate in (
+        _REPO_ROOT / "epstein.db",
+        _SCRIPT_DIR / "epstein.db",
+        Path.cwd() / "epstein.db",
+    ):
+        if candidate.is_file():
+            return candidate.resolve()
+    return (_REPO_ROOT / "epstein.db").resolve()
+
+
+DB_PATH = str(_default_db_path())
+
+conn = sqlite3.connect(DB_PATH)
 cursor = conn.cursor()
+
+has_flights = cursor.execute(
+    "SELECT 1 FROM sqlite_master WHERE type='table' AND name='flights'"
+).fetchone()
+if not has_flights:
+    raise RuntimeError(
+        f"Missing flights table in {DB_PATH}. "
+        "Populate the database first with: python to_db/data_to_db.py"
+    )
 
 # -------------------------
 # 1. Extract names

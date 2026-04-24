@@ -9,18 +9,36 @@ from pathlib import Path
 
 import requests
 
-DB_PATH = 'to_db/epstein.db'
+_SCRIPT_DIR = Path(__file__).resolve().parent
+_REPO_ROOT = _SCRIPT_DIR.parent
+
+
+def _default_db_path() -> Path:
+    """Prefer an existing epstein.db in repo root, then to_db/, then cwd."""
+    for candidate in (
+        _REPO_ROOT / "epstein.db",
+        _SCRIPT_DIR / "epstein.db",
+        Path.cwd() / "epstein.db",
+    ):
+        if candidate.is_file():
+            return candidate.resolve()
+    return (_REPO_ROOT / "epstein.db").resolve()
+
+
+DB_PATH = str(_default_db_path())
 GEOCODE_CACHE_PATH = Path(__file__).resolve().parent / "weather_geocode_cache.json"
 GEOCODE_URL = "https://geocoding-api.open-meteo.com/v1/search"
 ARCHIVE_URL = "https://archive-api.open-meteo.com/v1/archive"
 
 REQUEST_PAUSE_SEC = 0.2
-ARCHIVE_RATE_LIMIT_WAIT_SEC = 65
+ARCHIVE_RATE_LIMIT_WAIT_SEC = 10
 ARCHIVE_MAX_RETRIES = 2
 
 WEATHER_SUNNY = "sunny"
 WEATHER_RAINY = "rainy"
+WEATHER_UNKNOWN_DAY = "unknown_day"
 ERROR_NO_ORIGIN = "error_no_origin"
+ERROR_NO_DESTINATION = "error_no_destination"
 ERROR_GEOCODE = "error_geocode"
 ERROR_BAD_DATE = "error_bad_date"
 ERROR_ARCHIVE_RATE_LIMIT = "error_archive_rate_limit"
@@ -194,17 +212,81 @@ def classify_daily(precip_mm: float | None, wmo_code: int | None) -> str:
     return WEATHER_SUNNY
 
 
-def ensure_departure_weather_column(conn: sqlite3.Connection) -> None:
+def ensure_weather_columns(conn: sqlite3.Connection) -> None:
     cols = {row[1] for row in conn.execute("PRAGMA table_info(flights)").fetchall()}
-    if "departure_weather" not in cols:
-        conn.execute("ALTER TABLE flights ADD COLUMN departure_weather TEXT")
-        conn.commit()
-
-
-def normalize_origins(conn: sqlite3.Connection) -> None:
-    updates = [(new, old) for old, new in ORIGIN_NORMALIZATION_MAP.items()]
-    conn.executemany("UPDATE flights SET origin = ? WHERE origin = ?", updates)
+    if "departure_weather_id" not in cols:
+        conn.execute("ALTER TABLE flights ADD COLUMN departure_weather_id INTEGER")
+    if "arrival_weather_id" not in cols:
+        conn.execute("ALTER TABLE flights ADD COLUMN arrival_weather_id INTEGER")
     conn.commit()
+
+
+def ensure_flight_weather_indexes(conn: sqlite3.Connection) -> None:
+    conn.execute(
+        "CREATE INDEX IF NOT EXISTS idx_flights_departure_weather_id ON flights(departure_weather_id)"
+    )
+    conn.execute(
+        "CREATE INDEX IF NOT EXISTS idx_flights_arrival_weather_id ON flights(arrival_weather_id)"
+    )
+    conn.commit()
+
+
+def ensure_weather_conditions_table(conn: sqlite3.Connection) -> dict[str, int]:
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS weather_conditions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            code TEXT NOT NULL UNIQUE
+        )
+        """
+    )
+    conn.executemany(
+        "INSERT OR IGNORE INTO weather_conditions (code) VALUES (?)",
+        [(WEATHER_SUNNY,), (WEATHER_RAINY,), (WEATHER_UNKNOWN_DAY,)],
+    )
+    conn.commit()
+    rows = conn.execute("SELECT id, code FROM weather_conditions").fetchall()
+    return {code: wid for wid, code in rows}
+
+
+def normalize_airport_dimension(conn: sqlite3.Connection) -> None:
+    for old_name, new_name in ORIGIN_NORMALIZATION_MAP.items():
+        old_row = conn.execute(
+            "SELECT id FROM airports WHERE name = ?", (old_name,)
+        ).fetchone()
+        if not old_row:
+            continue
+        old_id = old_row[0]
+
+        new_row = conn.execute(
+            "SELECT id FROM airports WHERE name = ?", (new_name,)
+        ).fetchone()
+        if new_row:
+            new_id = new_row[0]
+            if new_id != old_id:
+                conn.execute(
+                    "UPDATE flights SET origin_airport_id = ? WHERE origin_airport_id = ?",
+                    (new_id, old_id),
+                )
+                conn.execute(
+                    "UPDATE flights SET destination_airport_id = ? WHERE destination_airport_id = ?",
+                    (new_id, old_id),
+                )
+                conn.execute("DELETE FROM airports WHERE id = ?", (old_id,))
+        else:
+            conn.execute(
+                "UPDATE airports SET name = ? WHERE id = ?",
+                (new_name, old_id),
+            )
+    conn.commit()
+
+
+def to_weather_condition(status: str) -> str:
+    if status == WEATHER_SUNNY:
+        return WEATHER_SUNNY
+    if status == WEATHER_RAINY:
+        return WEATHER_RAINY
+    return WEATHER_UNKNOWN_DAY
 
 
 def fetch_daily_series(lat: float, lon: float, day: str, session: requests.Session) -> tuple[float | None, int | None] | str:
@@ -243,20 +325,58 @@ def fetch_daily_series(lat: float, lon: float, day: str, session: requests.Sessi
     return ERROR_ARCHIVE_RESPONSE
 
 
+def resolve_airport_weather_status(
+    airport: str | None,
+    day: str,
+    session: requests.Session,
+    cache: dict[str, list[float] | None],
+    missing_airport_error: str,
+) -> str:
+    if not airport or not str(airport).strip():
+        return missing_airport_error
+
+    loc = geocode_origin(str(airport), session, cache)
+    if loc is None:
+        return ERROR_GEOCODE
+
+    pair_or_error = fetch_daily_series(loc[0], loc[1], day, session)
+    if isinstance(pair_or_error, str):
+        return pair_or_error
+    return classify_daily(pair_or_error[0], pair_or_error[1])
+
+
 def enrich_db(db_path: Path, limit: int | None = None) -> None:
     conn = sqlite3.connect(db_path, timeout=30.0)
     try:
+        conn.execute("PRAGMA foreign_keys = ON")
         has_flights = conn.execute(
             "SELECT 1 FROM sqlite_master WHERE type='table' AND name='flights'"
         ).fetchone()
         if not has_flights:
-            raise RuntimeError(f"Missing flights table in {db_path}")
+            size = db_path.stat().st_size if db_path.exists() else 0
+            raise RuntimeError(
+                f"Missing flights table in {db_path} (file size: {size} bytes). "
+                "Create/populate the database first with: python to_db/data_to_db.py"
+            )
 
-        ensure_departure_weather_column(conn)
-        normalize_origins(conn)
+        ensure_weather_columns(conn)
+        ensure_flight_weather_indexes(conn)
+        weather_condition_ids = ensure_weather_conditions_table(conn)
+        normalize_airport_dimension(conn)
 
         rows = conn.execute(
-            "SELECT id, flight_date, origin FROM flights WHERE flight_date IS NOT NULL AND TRIM(flight_date) != ''"
+            """
+            SELECT
+                f.id,
+                f.flight_date,
+                ao.name AS origin_name,
+                ad.name AS destination_name
+            FROM flights f
+            LEFT JOIN airports ao ON ao.id = f.origin_airport_id
+            LEFT JOIN airports ad ON ad.id = f.destination_airport_id
+            WHERE f.flight_date IS NOT NULL
+              AND TRIM(f.flight_date) != ''
+            """
         ).fetchall()
         if limit is not None:
             rows = rows[:limit]
@@ -265,39 +385,69 @@ def enrich_db(db_path: Path, limit: int | None = None) -> None:
         session.headers["User-Agent"] = "flight-weather-enrich/1.0"
         cache = _load_geocode_cache()
 
-        updates: list[tuple[str, str]] = []
+        updates: list[tuple[int, int, str]] = []
         total = len(rows)
-        for idx, (fid, fdate, origin) in enumerate(rows, start=1):
+        for idx, (fid, fdate, origin, destination) in enumerate(rows, start=1):
             if idx == 1 or idx % 100 == 0 or idx == total:
                 print(f"Progress {idx}/{total}")
-            if not origin or not str(origin).strip():
-                updates.append((ERROR_NO_ORIGIN, fid))
-                continue
             day = _normalize_calendar_date(str(fdate))
             if not re.match(r"^\d{4}-\d{2}-\d{2}$", day):
-                updates.append((ERROR_BAD_DATE, fid))
+                dep_status = ERROR_BAD_DATE
+                arr_status = ERROR_BAD_DATE
+                dep_code = to_weather_condition(dep_status)
+                arr_code = to_weather_condition(arr_status)
+                updates.append(
+                    (
+                        weather_condition_ids[dep_code],
+                        weather_condition_ids[arr_code],
+                        fid,
+                    )
+                )
                 continue
-            loc = geocode_origin(str(origin), session, cache)
-            if loc is None:
-                updates.append((ERROR_GEOCODE, fid))
-                continue
-            pair_or_error = fetch_daily_series(loc[0], loc[1], day, session)
-            if isinstance(pair_or_error, str):
-                updates.append((pair_or_error, fid))
-            else:
-                updates.append((classify_daily(pair_or_error[0], pair_or_error[1]), fid))
+
+            dep_status = resolve_airport_weather_status(
+                airport=origin,
+                day=day,
+                session=session,
+                cache=cache,
+                missing_airport_error=ERROR_NO_ORIGIN,
+            )
+            arr_status = resolve_airport_weather_status(
+                airport=destination,
+                day=day,
+                session=session,
+                cache=cache,
+                missing_airport_error=ERROR_NO_DESTINATION,
+            )
+
+            dep_code = to_weather_condition(dep_status)
+            arr_code = to_weather_condition(arr_status)
+            updates.append(
+                (
+                    weather_condition_ids[dep_code],
+                    weather_condition_ids[arr_code],
+                    fid,
+                )
+            )
             time.sleep(REQUEST_PAUSE_SEC)
 
         _save_geocode_cache(cache)
-        conn.executemany("UPDATE flights SET departure_weather = ? WHERE id = ?", updates)
+        conn.executemany(
+            "UPDATE flights SET departure_weather_id = ?, arrival_weather_id = ? WHERE id = ?",
+            updates,
+        )
         conn.commit()
-        print(f"Updated departure_weather for {len(updates)} rows in {db_path}")
+        print(
+            f"Updated departure_weather_id and arrival_weather_id for {len(updates)} rows in {db_path}"
+        )
     finally:
         conn.close()
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Normalize airport names and enrich departure_weather from Open-Meteo.")
+    parser = argparse.ArgumentParser(
+        description="Normalize airport names and enrich departure+arrival weather from Open-Meteo."
+    )
     parser.add_argument("--db", default=str(DB_PATH), help=f"SQLite database path (default: {DB_PATH})")
     parser.add_argument("--limit", type=int, default=None, metavar="N", help="Only process first N flights")
     args = parser.parse_args()
